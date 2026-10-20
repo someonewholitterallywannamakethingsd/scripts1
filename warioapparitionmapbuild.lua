@@ -65,7 +65,7 @@ tex3.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 local tex4 = Instance.new('Texture', floor)
 tex4.Face = "Top"
-tex4.ColorMapContent = Content.fromUri("rbxassetid://rbxassetid://87442812072875")
+tex4.ColorMapContent = Content.fromUri("rbxassetid://87442812072875")
 
 tex1.StudsPerTileU = 4
 tex1.StudsPerTileV = 4
