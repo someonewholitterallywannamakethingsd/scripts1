@@ -468,7 +468,7 @@ tex1.Face = "Back"
 tex1.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 local tex9 = Instance.new('Texture', corner2)
-tex2.Face = "back"
+tex2.Face = "Back"
 tex2.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 local tex0 = Instance.new('Texture', corner3)
