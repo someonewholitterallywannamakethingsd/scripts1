@@ -294,7 +294,7 @@ for i = 1, 14 do
 		if targetPart then
 			for _, face in ipairs(faces) do
 				local decal = Instance.new("Decal")
-				decal.ColorMapContent = Content.fromUri("rbxassetid://121522622668165")
+				decal.ColorMapContent = Content.fromUri("rbxassetid://135339671064232")
 				decal.Face = face
 				decal.Parent = targetPart
 			end
