@@ -79,6 +79,11 @@ tex3.StudsPerTileV = 4
 tex4.StudsPerTileU = 4
 tex4.StudsPerTileV = 4
 
+wall1.Color = Color3.fromRGB(255, 255, 255)
+wall2.Color = Color3.fromRGB(255, 255, 255)
+ceiling1.Color = Color3.fromRGB(255, 255, 255)
+floor.Color = Color3.fromRGB(255, 255, 255)
+
 local pillar1 = Instance.new('Part', game.Workspace)
 pillar1.Name = 'Pillar1'
 pillar1.Position = Vector3.new(-885.1260986328125, 10.264791488647461, -106.40481567382812)
@@ -282,8 +287,8 @@ for i = 1, 14 do
 		Enum.NormalId.Back,
 		Enum.NormalId.Left,
 		Enum.NormalId.Right,
-		Enum.NormalId.Up,
-		Enum.NormalId.Down
+		Enum.NormalId.Top,
+		Enum.NormalId.Bottom
 	}
 	local function applyDecals(targetPart)
 		if targetPart then
@@ -381,6 +386,12 @@ local tex8 = Instance.new('Texture', stonefloor)
 tex8.Face = "Top"
 tex8.ColorMapContent = Content.fromUri("rbxassetid://126004437094141")
 
+metalwall1.Color = Color3.fromRGB(255, 255, 255)
+metalwall2.Color = Color3.fromRGB(255, 255, 255)
+metalceil.Color = Color3.fromRGB(255, 255, 255)
+stonefloor.Color = Color3.fromRGB(255, 255, 255)
+ripple.Color = Color3.fromRGB(255, 255, 255)
+
 local rippledecal = Instance.new('Decal', ripple)
 rippledecal.Face = "Left"
 rippledecal.ColorMapContent = Content.fromUri("rbxassetid://133669444570152")
@@ -472,6 +483,10 @@ tex9.StudsPerTileV = 4
 
 tex0.StudsPerTileU = 4
 tex0.StudsPerTileV = 4
+
+corner1.Color = Color3.fromRGB(255, 255, 255)
+corner2.Color = Color3.fromRGB(255, 255, 255)
+corner3.Color = Color3.fromRGB(255, 255, 255)
 
 getgenv().wario = Instance.new('Part', game.Workspace)
 local wario = getgenv().wario
