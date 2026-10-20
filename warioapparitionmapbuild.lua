@@ -375,7 +375,7 @@ tex5.Face = "Back"
 tex5.ColorMapContent = Content.fromUri("rbxassetid://81915176203953")
 
 local tex6 = Instance.new('Texture', metalwall2)
-tex6.Face = "Front"
+tex6.Face = "Back"
 tex6.ColorMapContent = Content.fromUri("rbxassetid://81915176203953")
 
 local tex7 = Instance.new('Texture', metalceil)
@@ -492,7 +492,7 @@ getgenv().wario = Instance.new('Part', game.Workspace)
 local wario = getgenv().wario
 wario.Name = 'apparitionhead'
 wario.Position = Vector3.new(-880.3001098632812, 9.503790855407715, -97.05003356933594)
-wario.Size = Vector3.new(1, 1, 1)
+wario.Size = Vector3.new(10, 10, 10)
 wario.Orientation = Vector3.new(0, -90, 0)
 wario.Color = Color3.fromRGB(0.6392157077789307, 0.6352941393852234, 0.6470588445663452)
 wario.BrickColor = BrickColor.new(0.6392157077789307, 0.6352941393852234, 0.6470588445663452)
