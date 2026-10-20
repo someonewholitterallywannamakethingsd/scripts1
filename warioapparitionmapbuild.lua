@@ -53,19 +53,19 @@ ceiling1.Locked = false
 
 local tex1 = Instance.new('Texture', wall1)
 tex1.Face = "Back"
-tex1.ColorMapContent = "rbxassetid://106997428022841"
+tex1.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 local tex2 = Instance.new('Texture', wall2)
 tex2.Face = "Front"
-tex2.ColorMapContent = "rbxassetid://106997428022841"
+tex2.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 local tex3 = Instance.new('Texture', ceiling1)
 tex3.Face = "Back"
-tex3.ColorMapContent = "rbxassetid://106997428022841"
+tex3.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 local tex4 = Instance.new('Texture', floor)
 tex4.Face = "Top"
-tex4.ColorMapContent = "rbxassetid://87442812072875"
+tex4.ColorMapContent = Content.fromUri("rbxassetid://rbxassetid://87442812072875")
 
 tex1.StudsPerTileU = 4
 tex1.StudsPerTileV = 4
@@ -289,7 +289,7 @@ for i = 1, 14 do
 		if targetPart then
 			for _, face in ipairs(faces) do
 				local decal = Instance.new("Decal")
-				decal.Texture = "rbxassetid://121522622668165"
+				decal.ColorMapContent = Content.fromUri("rbxassetid://121522622668165")
 				decal.Face = face
 				decal.Parent = targetPart
 			end
@@ -367,23 +367,23 @@ ripple.Locked = false
 
 local tex5 = Instance.new('Texture', metalwall1)
 tex5.Face = "Back"
-tex5.ColorMapContent = "rbxassetid://81915176203953"
+tex5.ColorMapContent = Content.fromUri("rbxassetid://81915176203953")
 
 local tex6 = Instance.new('Texture', metalwall2)
 tex6.Face = "Front"
-tex6.ColorMapContent = "rbxassetid://81915176203953"
+tex6.ColorMapContent = Content.fromUri("rbxassetid://81915176203953")
 
 local tex7 = Instance.new('Texture', metalceil)
 tex7.Face = "Back"
-tex7.ColorMapContent = "rbxassetid://81915176203953"
+tex7.ColorMapContent = Content.fromUri("rbxassetid://81915176203953")
 
 local tex8 = Instance.new('Texture', stonefloor)
 tex8.Face = "Top"
-tex8.ColorMapContent = "rbxassetid://126004437094141"
+tex8.ColorMapContent = Content.fromUri("rbxassetid://126004437094141")
 
 local rippledecal = Instance.new('Decal', ripple)
 rippledecal.Face = "Left"
-rippledecal.ColorMapContent = "rbxassetid://133669444570152"
+rippledecal.ColorMapContent = Content.fromUri("rbxassetid://133669444570152")
 
 tex5.StudsPerTileU = 4
 tex5.StudsPerTileV = 4
@@ -454,15 +454,15 @@ lockpart.Locked = false
 
 local tex8 = Instance.new('Texture', corner1)
 tex1.Face = "Back"
-tex1.ColorMapContent = "rbxassetid://106997428022841"
+tex1.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 local tex9 = Instance.new('Texture', corner2)
 tex2.Face = "back"
-tex2.ColorMapContent = "rbxassetid://106997428022841"
+tex2.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 local tex0 = Instance.new('Texture', corner3)
 tex3.Face = "Back"
-tex3.ColorMapContent = "rbxassetid://106997428022841"
+tex3.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 tex8.StudsPerTileU = 4
 tex8.StudsPerTileV = 4
