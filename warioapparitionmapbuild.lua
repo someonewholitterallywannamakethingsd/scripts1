@@ -53,19 +53,19 @@ ceiling1.Locked = false
 
 local tex1 = Instance.new('Texture', wall1)
 tex1.Face = "Back"
-tex1.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
+tex1.ColorMapContent = "rbxassetid://106997428022841"
 
 local tex2 = Instance.new('Texture', wall2)
 tex2.Face = "Front"
-tex2.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
+tex2.ColorMapContent = "rbxassetid://106997428022841"
 
 local tex3 = Instance.new('Texture', ceiling1)
 tex3.Face = "Back"
-tex3.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
+tex3.ColorMapContent = "rbxassetid://106997428022841"
 
 local tex4 = Instance.new('Texture', floor)
 tex4.Face = "Top"
-tex4.ColorMapContent = Content.fromUri("rbxassetid://87442812072875")
+tex4.ColorMapContent = "rbxassetid://87442812072875"
 
 tex1.StudsPerTileU = 4
 tex1.StudsPerTileV = 4
@@ -78,11 +78,6 @@ tex3.StudsPerTileV = 4
 
 tex4.StudsPerTileU = 4
 tex4.StudsPerTileV = 4
-
-wall1.Color = Color3.fromRGB(255, 255, 255)
-wall2.Color = Color3.fromRGB(255, 255, 255)
-ceiling1.Color = Color3.fromRGB(255, 255, 255)
-floor.Color = Color3.fromRGB(255, 255, 255)
 
 local pillar1 = Instance.new('Part', game.Workspace)
 pillar1.Name = 'Pillar1'
@@ -279,29 +274,40 @@ pillar15.Reflectance = 0
 pillar15.Anchored = true
 pillar15.CanCollide = true
 pillar15.Locked = false
-for i = 1, 15 do
-	local pillar = workspace:FindFirstChild("Pillar1" .. i)
-	local ceilingPillar = workspace:FindFirstChild("CeilingPillar" .. i)
-	local faces = {
-		Enum.NormalId.Front,
-		Enum.NormalId.Back,
-		Enum.NormalId.Left,
-		Enum.NormalId.Right,
-		Enum.NormalId.Top,
-		Enum.NormalId.Bottom
-	}
-	local function applyDecals(targetPart)
-		if targetPart then
-			for _, face in ipairs(faces) do
-				local decal = Instance.new("Decal")
-				decal.ColorMapContent = Content.fromUri("rbxassetid://135339671064232")
-				decal.Face = face
-				decal.Parent = targetPart
-			end
+local pillars = {}
+local ceilingPillars = {}
+
+for _, child in ipairs(workspace:GetChildren()) do
+	if child.Name == "Pillar1" and #pillars < 14 then
+		table.insert(pillars, child)
+	elseif child.Name == "CeilingPillar" and #ceilingPillars < 14 then
+		table.insert(ceilingPillars, child)
+	end
+end
+
+local faces = {
+	Enum.NormalId.Front,
+	Enum.NormalId.Back,
+	Enum.NormalId.Left,
+	Enum.NormalId.Right,
+	Enum.NormalId.Top,
+	Enum.NormalId.Bottom
+}
+
+local function applyDecals(targetPart)
+	if targetPart then
+		for _, face in ipairs(faces) do
+			local decal = Instance.new("Decal")
+			decal.Texture = "rbxassetid://121522622668165"
+			decal.Face = face
+			decal.Parent = targetPart
 		end
 	end
-	applyDecals(pillar)
-	applyDecals(ceilingPillar)
+end
+
+for i = 1, 14 do
+	applyDecals(pillars[i])
+	applyDecals(ceilingPillars[i])
 end
 
 local metalceil = Instance.new('Part', game.Workspace)
@@ -372,29 +378,23 @@ ripple.Locked = false
 
 local tex5 = Instance.new('Texture', metalwall1)
 tex5.Face = "Back"
-tex5.ColorMapContent = Content.fromUri("rbxassetid://81915176203953")
+tex5.ColorMapContent = "rbxassetid://81915176203953"
 
 local tex6 = Instance.new('Texture', metalwall2)
-tex6.Face = "Back"
-tex6.ColorMapContent = Content.fromUri("rbxassetid://81915176203953")
+tex6.Face = "Front"
+tex6.ColorMapContent = "rbxassetid://81915176203953"
 
 local tex7 = Instance.new('Texture', metalceil)
 tex7.Face = "Back"
-tex7.ColorMapContent = Content.fromUri("rbxassetid://81915176203953")
+tex7.ColorMapContent = "rbxassetid://81915176203953"
 
 local tex8 = Instance.new('Texture', stonefloor)
 tex8.Face = "Top"
-tex8.ColorMapContent = Content.fromUri("rbxassetid://126004437094141")
-
-metalwall1.Color = Color3.fromRGB(255, 255, 255)
-metalwall2.Color = Color3.fromRGB(255, 255, 255)
-metalceil.Color = Color3.fromRGB(255, 255, 255)
-stonefloor.Color = Color3.fromRGB(255, 255, 255)
-ripple.Color = Color3.fromRGB(255, 255, 255)
+tex8.ColorMapContent = "rbxassetid://126004437094141"
 
 local rippledecal = Instance.new('Decal', ripple)
 rippledecal.Face = "Left"
-rippledecal.ColorMapContent = Content.fromUri("rbxassetid://133669444570152")
+rippledecal.ColorMapContent = "rbxassetid://133669444570152"
 
 tex5.StudsPerTileU = 4
 tex5.StudsPerTileV = 4
@@ -465,15 +465,15 @@ lockpart.Locked = false
 
 local tex8 = Instance.new('Texture', corner1)
 tex1.Face = "Back"
-tex1.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
+tex1.ColorMapContent = "rbxassetid://106997428022841"
 
 local tex9 = Instance.new('Texture', corner2)
-tex2.Face = "Back"
-tex2.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
+tex2.Face = "back"
+tex2.ColorMapContent = "rbxassetid://106997428022841"
 
 local tex0 = Instance.new('Texture', corner3)
 tex3.Face = "Back"
-tex3.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
+tex3.ColorMapContent = "rbxassetid://106997428022841"
 
 tex8.StudsPerTileU = 4
 tex8.StudsPerTileV = 4
@@ -484,20 +484,16 @@ tex9.StudsPerTileV = 4
 tex0.StudsPerTileU = 4
 tex0.StudsPerTileV = 4
 
-corner1.Color = Color3.fromRGB(255, 255, 255)
-corner2.Color = Color3.fromRGB(255, 255, 255)
-corner3.Color = Color3.fromRGB(255, 255, 255)
-
 getgenv().wario = Instance.new('Part', game.Workspace)
 local wario = getgenv().wario
 wario.Name = 'apparitionhead'
 wario.Position = Vector3.new(-880.3001098632812, 9.503790855407715, -97.05003356933594)
-wario.Size = Vector3.new(10, 10, 10)
+wario.Size = Vector3.new(1, 1, 1)
 wario.Orientation = Vector3.new(0, -90, 0)
 wario.Color = Color3.fromRGB(0.6392157077789307, 0.6352941393852234, 0.6470588445663452)
 wario.BrickColor = BrickColor.new(0.6392157077789307, 0.6352941393852234, 0.6470588445663452)
 wario.Material = Enum.Material['Plastic']
-wario.Transparency = 1
+wario.Transparency = 0
 wario.Reflectance = 0
 wario.Anchored = true
 wario.CanCollide = true
