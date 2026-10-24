@@ -476,16 +476,16 @@ lockpart.CanCollide = true
 lockpart.Locked = false
 
 local tex8 = Instance.new('Texture', corner1)
-tex1.Face = "Back"
-tex1.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
+tex8.Face = "Back"
+tex8.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 local tex9 = Instance.new('Texture', corner2)
-tex2.Face = "Back"
-tex2.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
+tex9.Face = "Back"
+tex9.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 local tex0 = Instance.new('Texture', corner3)
-tex3.Face = "Back"
-tex3.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
+tex0.Face = "Back"
+tex0.ColorMapContent = Content.fromUri("rbxassetid://106997428022841")
 
 tex8.StudsPerTileU = 4
 tex8.StudsPerTileV = 4
@@ -503,7 +503,7 @@ corner3.Color = Color3.fromRGB(255, 255, 255)
 getgenv().wario = Instance.new('Part', game.Workspace)
 local wario = getgenv().wario
 wario.Name = 'apparitionhead'
-wario.Position = Vector3.new(-880.3001098632812, 9.503790855407715, -97.05003356933594)
+wario.Position = Vector3.new(-880.3001098632812, 8, -97.05003356933594)
 wario.Size = Vector3.new(10, 10, 10)
 wario.Orientation = Vector3.new(0, -90, 0)
 wario.Color = Color3.fromRGB(0.6392157077789307, 0.6352941393852234, 0.6470588445663452)
