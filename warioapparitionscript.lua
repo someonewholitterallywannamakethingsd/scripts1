@@ -12,6 +12,9 @@ local bitedamage = 20
 local attackCooldown = false
 local Players = game:GetService("Players")
 local lp = Players.LocalPlayer
+local char = lp.Character or lp.CharacterAdded:Wait()
+local hum = char:FindFirstChildOfClass("Humanoid")
+local rp = char:FindFirstChild("HumanoidRootPart")
 local stompoffset = 5
 local isStomping = false
 lp.CharacterAdded:Connect(function(newCharacter)
