@@ -252,12 +252,11 @@ wario.Touched:Connect(function(hit)
 	local rp = char:FindFirstChild("HumanoidRootPart")
 	if not hum or hum.Health <= 0 or not rp then return end
 	local warioTopY = wario.Position.Y + (wario.Size.Y / 2)
-	local playerFeetY = rp.Position.Y - 7
-	local isAboveHat = playerFeetY >= (warioTopY - 1.5)-
+	local playerFeetY = rp.Position.Y - 3
+	local isAboveHat = playerFeetY >= (warioTopY - 1.5)
 	if isAboveHat then
-		if isStomping then return end
-		isStomping = true
-		rp.AssemblyLinearVelocity = Vector3.new(rp.AssemblyLinearVelocity.X, 35, rp.AssemblyLinearVelocity.Z)
+    	if isStomping then return end
+    	isStomping = true
 
 		onStomp()
 
