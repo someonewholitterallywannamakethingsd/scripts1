@@ -5,9 +5,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/someonewholitterallyw
 repeat task.wait() until getgenv().triggerpart and getgenv().wario
 local trigger = getgenv().triggerpart
 local wario = getgenv().wario
-local mesh = wario.SpecialMesh
+local mesh = wario.Mesh
 local lockpart = getgenv().lockpart
-local wariohealth = 40 -- you have to stomp him 25 times.
+local wariohealth = 40 -- you have to stomp him 40 times.
 local bitedamage = 20
 local attackCooldown = false
 local lp = game.Players.LocalPlayer
