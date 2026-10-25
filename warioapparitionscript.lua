@@ -10,13 +10,8 @@ local lockpart = getgenv().lockpart
 local wariohealth = 40 -- you have to stomp him 40 times.
 local bitedamage = 20
 local attackCooldown = false
-local lp = game.Players.LocalPlayer
-local char = lp.Character or lp.CharacterAdded:Wait()
-local rp = char:FindFirstChild("HumanoidRootPart")
-local hum = char:FindFirstChild("Humanoid")
-hum.WalkSpeed = 37
-game.Workspace.Gravity = 120
-hum.JumpPower = 50
+local Players = game:GetService("Players")
+local lp = Players.LocalPlayer
 local stompoffset = 5
 local isStomping = false
 lp.CharacterAdded:Connect(function(newCharacter)
@@ -243,48 +238,62 @@ local function onStomp()
 	end
 end
 
-while wariohealth > 0 do
-	wario.Touched:Connect(function(hit)
-    	if wariohealth <= 0 then return end
-	    if not char then return end
-	
-		local hitPlayer = game.Players:GetPlayerFromCharacter(char)
-    		if not hitPlayer then return end
+wario.Touched:Connect(function(hit)
+	if wariohealth <= 0 then return end
 
-		if not hum or hum.Health <= 0 or not rp then return end
+	local char = hit.Parent
+	if not char then return end
+	local hitPlayer = Players:GetPlayerFromCharacter(char)
+	if not hitPlayer then return end
+	local hum = char:FindFirstChildOfClass("Humanoid")
+	local rp = char:FindFirstChild("HumanoidRootPart")
+	if not hum or hum.Health <= 0 or not rp then return end
+	local warioTopY = wario.Position.Y + (wario.Size.Y / 2)
+	local playerFeetY = rp.Position.Y - 7
+	local isAboveHat = playerFeetY >= (warioTopY - 1.5)-
+	if isAboveHat then
+		if isStomping then return end
+		isStomping = true
+		rp.AssemblyLinearVelocity = Vector3.new(rp.AssemblyLinearVelocity.X, 35, rp.AssemblyLinearVelocity.Z)
 
-		if hum and rp then
-        		local playerY = rp.Position.Y
-        		local warioY = wario.Position.Y
-        		local isFalling = rp.AssemblyLinearVelocity.Y < 0 or (playerY > warioY + stompoffset)  
-        		if isFalling and (playerY > warioY + stompoffset) then
-				isStomping = true
-				wario.CanCollide = false
-				wario.CanTouch = false
-            			rp.AssemblyLinearVelocity = Vector3.new(rp.AssemblyLinearVelocity.X, 30, rp.AssemblyLinearVelocity.Z)
-            			onStomp()
-            			task.wait(0.5)
-				if wariohealth > 0 then
-                			wario.CanCollide = true
-                			wario.CanTouch = true
-                			isStomping = false
-				end
-			else
-            			if attackCooldown or isStomping then return end
-            			local toPlayer = (rp.Position - wario.Position).Unit
-            			local isFacingPlayer = wario.CFrame.LookVector:Dot(toPlayer) > 0.3 -- PositiveDot = in front
-            			if isFacingPlayer then
-                			attackCooldown = true
-                			hum.Health = hum.Health - bitedamage
-                			if wariodevour then
-                   				wariodevour:Play()
-                			end
-                			local knockbackDir = -wario.CFrame.LookVector
-                			rp.AssemblyLinearVelocity = Vector3.new(knockbackDir.X * 45, 15, knockbackDir.Z * 45)
-                			task.wait(1)
-                			attackCooldown = false
-				end
-			end
-    		end
-	end)
+		onStomp()
+
+		task.wait(0.8)
+		if wariohealth > 0 then
+			isStomping = false
+		end
+
+	else
+		if attackCooldown or isStomping then return end
+
+		local toPlayer = (rp.Position - wario.Position).Unit
+		local isFacingPlayer = wario.CFrame.LookVector:Dot(toPlayer) > 0.2
+
+		if isFacingPlayer then
+			attackCooldown = true
+			hum.Health = hum.Health - bitedamage
+
+			if waha then waha:Play() end
+			local knockbackDir = -wario.CFrame.LookVector
+			rp.AssemblyLinearVelocity = Vector3.new(knockbackDir.X * 45, 15, knockbackDir.Z * 45)
+
+			task.wait(1)
+			attackCooldown = false
+		end
+	end
+end)
+
+local function applyMovementStats(char)
+	local hum = char:WaitForChild("Humanoid")
+	hum.WalkSpeed = 37
+	hum.JumpPower = 50
+	workspace.Gravity = 120
 end
+
+if lp.Character then
+	applyMovementStats(lp.Character)
+end
+
+lp.CharacterAdded:Connect(function(newChar)
+	applyMovementStats(newChar)
+end)
