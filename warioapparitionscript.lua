@@ -201,7 +201,7 @@ local function onStomp()
 	local chosenSound = (math.random(1, 2) == 1) and waaa or wayaya
 	wariohit:Play()
 	chosenSound:Play()
-	mesh.Scale = Vector3.new(0.011, 0.003, 0.01)
+	mesh.Scale = Vector3.new(0.011, 0.08, 0.01)
 	mesh.TextureId = "rbxassetid://126248232939259"
     	chosenSound.Ended:Wait()
 	mesh.Scale = Vector3.new(0.011, 0.011, 0.01)
