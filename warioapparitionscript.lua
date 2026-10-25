@@ -5,6 +5,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/someonewholitterallyw
 repeat task.wait() until getgenv().triggerpart and getgenv().wario
 local trigger = getgenv().triggerpart
 local wario = getgenv().wario
+local mesh = wario.SpecialMesh
 local lockpart = getgenv().lockpart
 local wariohealth = 40 -- you have to stomp him 25 times.
 local bitedamage = 20
@@ -200,7 +201,11 @@ local function onStomp()
 	local chosenSound = (math.random(1, 2) == 1) and waaa or wayaya
 	wariohit:Play()
 	chosenSound:Play()
+	mesh.Scale = Vector3.new(0.011, 0.003, 0.01)
+	mesh.TextureID = "rbxassetid://126248232939259"
     	chosenSound.Ended:Wait()
+	mesh.Scale = Vector3.new(0.011, 0.011, 0.01)
+	mesh.TextureID = "rbxassetid://118164342267624"
     	if wariohealth <= 0 then
 		if chaseConnection then
        		chaseConnection:Disconnect()
@@ -209,6 +214,8 @@ local function onStomp()
 		if wariohealth <= 0 then
    			wariomusic:Stop()
 		end
+		mesh.Scale = Vector3.new(0.011, 0.011, 0.01)
+		mesh.TextureID = "rbxassetid://118164342267624"
         	task.spawn(function()
 			wario.CanCollide = false
 			wario.CanTouch = false
