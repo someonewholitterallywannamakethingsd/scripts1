@@ -215,7 +215,7 @@ local function onStomp()
    			wariomusic:Stop()
 		end
 		mesh.Scale = Vector3.new(0.011, 0.011, 0.01)
-		mesh.TextureId = "rbxassetid://118164342267624"
+		mesh.TextureId = "rbxassetid://126248232939259"
         	task.spawn(function()
 			wario.CanCollide = false
 			wario.CanTouch = false
@@ -243,46 +243,48 @@ local function onStomp()
 	end
 end
 
-wario.Touched:Connect(function(hit)
-    if wariohealth <= 0 then return end
-    if not char then return end
+while wariohealth > 0 do
+	wario.Touched:Connect(function(hit)
+    	if wariohealth <= 0 then return end
+	    if not char then return end
+	
+		local hitPlayer = game.Players:GetPlayerFromCharacter(char)
+    		if not hitPlayer then return end
 
-	local hitPlayer = game.Players:GetPlayerFromCharacter(char)
-    if not hitPlayer then return end
+		if not hum or hum.Health <= 0 or not rp then return end
 
-	if not hum or hum.Health <= 0 or not rp then return end
-
-    if hum and rp then
-        local playerY = rp.Position.Y
-        local warioY = wario.Position.Y
-        local isFalling = rp.AssemblyLinearVelocity.Y < 0 or (playerY > warioY + stompoffset)  
-        if isFalling and (playerY > warioY + stompoffset) then
-			isStomping = true
-			wario.CanCollide = false
-			wario.CanTouch = false
-            rp.AssemblyLinearVelocity = Vector3.new(rp.AssemblyLinearVelocity.X, 30, rp.AssemblyLinearVelocity.Z)
-            onStomp()
-            task.wait(0.5)
-			if wariohealth > 0 then
-                		wario.CanCollide = true
-                		wario.CanTouch = true
-                		isStomping = false
+		if hum and rp then
+        		local playerY = rp.Position.Y
+        		local warioY = wario.Position.Y
+        		local isFalling = rp.AssemblyLinearVelocity.Y < 0 or (playerY > warioY + stompoffset)  
+        		if isFalling and (playerY > warioY + stompoffset) then
+				isStomping = true
+				wario.CanCollide = false
+				wario.CanTouch = false
+            			rp.AssemblyLinearVelocity = Vector3.new(rp.AssemblyLinearVelocity.X, 30, rp.AssemblyLinearVelocity.Z)
+            			onStomp()
+            			task.wait(0.5)
+				if wariohealth > 0 then
+                			wario.CanCollide = true
+                			wario.CanTouch = true
+                			isStomping = false
+				end
+			else
+            			if attackCooldown or isStomping then return end
+            			local toPlayer = (rp.Position - wario.Position).Unit
+            			local isFacingPlayer = wario.CFrame.LookVector:Dot(toPlayer) > 0.3 -- PositiveDot = in front
+            			if isFacingPlayer then
+                			attackCooldown = true
+                			hum.Health = hum.Health - bitedamage
+                			if wariodevour then
+                   				wariodevour:Play()
+                			end
+                			local knockbackDir = -wario.CFrame.LookVector
+                			rp.AssemblyLinearVelocity = Vector3.new(knockbackDir.X * 45, 15, knockbackDir.Z * 45)
+                			task.wait(1)
+                			attackCooldown = false
+				end
 			end
-		else
-            		if attackCooldown or isStomping then return end
-            		local toPlayer = (rp.Position - wario.Position).Unit
-            		local isFacingPlayer = wario.CFrame.LookVector:Dot(toPlayer) > 0.3 -- PositiveDot = in front
-            		if isFacingPlayer then
-                		attackCooldown = true
-                		hum.Health = hum.Health - bitedamage
-                		if wariodevour then
-                   			wariodevour:Play()
-                		end
-                		local knockbackDir = -wario.CFrame.LookVector
-                		rp.AssemblyLinearVelocity = Vector3.new(knockbackDir.X * 45, 15, knockbackDir.Z * 45)
-                		task.wait(1)
-                		attackCooldown = false
-			end
-		end
-    	end
-end)
+    		end
+	end)
+end
