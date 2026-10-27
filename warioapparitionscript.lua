@@ -7,7 +7,7 @@ local trigger = getgenv().triggerpart
 local wario = getgenv().wario
 local mesh = wario.Mesh
 local lockpart = getgenv().lockpart
-local wariohealth = 40 -- you have to stomp him 40 times.
+local wariohealth = 30 -- you have to stomp him 30 times.
 local bitedamage = 20
 local attackCooldown = false
 local Players = game:GetService("Players")
@@ -201,7 +201,11 @@ local function onStomp()
 	chosenSound:Play()
 	mesh.Scale = Vector3.new(0.011, 0.008, 0.01)
 	mesh.TextureId = "rbxassetid://126248232939259"
+	wario.CanCollide = false
+	wario.CanTouch = false
     	chosenSound.Ended:Wait()
+	wario.CanCollide = true
+	wario.CanTouch = true
 	mesh.Scale = Vector3.new(0.011, 0.011, 0.01)
 	mesh.TextureId = "rbxassetid://118164342267624"
     	if wariohealth <= 0 then
@@ -233,9 +237,9 @@ local function onStomp()
             		task.wait(3)
             		if wario and wario.Parent then
                 		wario:Destroy()
+				lockpart.Anchored = false
 				lockpart.CanCollide = false
 				lockpart.CanTouch = false
-				lockpart.Anchored = false
             		end
         	end)
 	end
