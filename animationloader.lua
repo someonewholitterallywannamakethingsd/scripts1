@@ -1,10 +1,14 @@
 -- ANIMATION LOADER (ANY RIG WHATSOEVER)
 -- thx gemini i dont really wanna code this for 3485798723486729346 years
-game:FindFirstChildOfClass("StarterGui"):SetCore("SendNotification", {
-    Title = "ANIMATION LOADER LOADED",
-    Text = "yeah lets go",
-    Duration = 10
-})
+
+pcall(function()
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "ANIMATION LOADER LOADED",
+        Text = "yeah lets go",
+        Duration = 10
+    })
+end)
+
 print("HELL YEAHHHHHHHH WE ARE IN")
 -- [[ to load your keyframes, do getgenv().loadanim(yourassetidhere, youranimationnamehere)
 and to play your animations, do
