@@ -13,7 +13,7 @@ getgenv().playanim(yourrighere, yourloadedanimnamehere, false)
 
 set it to true if you need to loop it. good luck mate
 ]]
-
+local runs = game:GetService("RunService")
 local currentTrack = nil
 local currentAnimData = nil
 
