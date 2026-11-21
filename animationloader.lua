@@ -111,17 +111,22 @@ getgenv().loadanim = function(assetId, animName)
 end
 
 local function applyUniversalPoses(rig, poses, alpha)
+    local map = getgenv().rigmap
+    if not map then
+        warn("SHIT. rigmap's nil. check if you defined it AFTER the loadstring.")
+        return
+    end
     for poseName, poseData in pairs(poses) do
-        local motorName = rigmap[poseName]
+        local motorName = map[poseName]
         if motorName then
             local motor = rig:FindFirstChild(motorName, true)
             if motor and motor:IsA("Motor6D") then
                 local targetCFrame = poseData.CFrame
                 if poseName == "Torso" then
-                    _, _, _, xx, xy, xz, yx, yy, yz, zx, zy, zz = targetCFrame:GetComponents()
+                    local _, _, _, xx, xy, xz, yx, yy, yz, zx, zy, zz = targetCFrame:GetComponents()
                     targetCFrame = CFrame.new(0, 0, 0, xx, xy, xz, yx, yy, yz, zx, zy, zz)
                 end
-                
+
                 motor.Transform = targetCFrame
             end
         end
