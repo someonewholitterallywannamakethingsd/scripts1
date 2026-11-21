@@ -13,9 +13,11 @@ getgenv().playanim(yourrighere, yourloadedanimnamehere, false)
 
 set it to true if you need to loop it. good luck mate
 ]]
+
 local runs = game:GetService("RunService")
 local currentTrack = nil
 local currentAnimData = nil
+local rigmap = getgenv().rigmap
 
 getgenv().loadanim = function(assetId, animName)
     local success, result = pcall(function()
